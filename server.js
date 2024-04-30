@@ -1,42 +1,31 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
-
+const user = require('./models/userSchema')
 require("./config/dbConnection");
 
-const mySchema = new mongoose.Schema({ 
-    name: { 
-        type: String, 
-        require: true
-    }, 
-    mobileNo: { 
-        type: String, 
-    }, 
-    address: {
-        type: String
-    },
-    mana_power: Number, 
-    health: Number, 
-    gold: Number 
-}) 
-  
-const MySchema = new mongoose.model("MySchema", mySchema)
+const {addUser} = require('./controllers/userController');
 
   
-const mage_1 = new MySchema({ 
-    name: "Takashi", 
-    power_type: 'Element', 
-    mana_power: 2009, 
-    health: 1000, 
-    gold: 10000 
-}); 
+// const MySchema = new mongoose.model("MySchema", mySchema)
+
   
-mage_1.save();
+// const mage_1 = new MySchema({ 
+//     name: "Takashi", 
+//     power_type: 'Element', 
+//     mana_power: 2009, 
+//     health: 1000, 
+//     gold: 10000 
+// }); 
+  
+// mage_1.save();
 
 app.use(express.json());
 app.get('/',(req,res)=>{
     res.send('server is ready');
 });
+
+app.post('/adduser', addUser)
 
 // app.post('/welcome',(req,res)=>{
 //     console.log("req.body", req.body)
