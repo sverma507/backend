@@ -1,6 +1,6 @@
 // const user = require('../models/userSchema')
 const categories=require('../models/categorySchema')
-const foodItem=require('../models/food_itemSchema')
+// const foodItem=require('../models/food_itemSchema')
 
 const addCategory = async (req, res) => {
      console.log("req.body=>", req.body);

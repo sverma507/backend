@@ -5,7 +5,8 @@ const app = express();
 require("./config/dbConnection");
 const cors= require('cors');
 const {addCategory, getCategory,deleteCategory,countCategory} = require('./controllers/userController');
-
+const {addItem, getItem,deleteItem,updateItem,getItemByCategory}=require('./controllers/itemController');
+const {addOrder,getOrder}=require('./controllers/orderController')
 app.use(cors());
 app.use(express.json());
 app.get('/',(req,res)=>{
@@ -16,6 +17,18 @@ app.post('/addcategory', addCategory)
 app.get('/getcategory', getCategory);
 app.delete('/deletecategory',deleteCategory);
 app.get('/countcategory',countCategory)
+
+
+
+app.post('/additem',addItem)
+app.get('/getitem',getItem)
+app.delete('/deleteitem',deleteItem)
+app.put('/updateitem',updateItem)
+app.get('/getitembycategory',getItemByCategory)
+
+
+app.post('/addorder',addOrder)
+app.get('/getorder',getOrder)
 
 const port = 4000;
 
