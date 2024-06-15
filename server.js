@@ -4,9 +4,10 @@ const app = express();
 // const user = require('./models/userSchema')
 require("./config/dbConnection");
 const cors= require('cors');
-const {addCategory, getCategory,deleteCategory,countCategory} = require('./controllers/userController');
+const {addCategory, getCategory,deleteCategory,countCategory} = require('./controllers/categoryController');
 const {addItem, getItem,deleteItem,updateItem,getItemByCategory}=require('./controllers/itemController');
 const {addOrder,getOrder}=require('./controllers/orderController')
+const {Register,Verify,Login}=require('./controllers/userController')
 app.use(cors());
 app.use(express.json());
 app.get('/',(req,res)=>{
@@ -29,6 +30,10 @@ app.get('/getitembycategory',getItemByCategory)
 
 app.post('/addorder',addOrder)
 app.get('/getorder',getOrder)
+
+
+app.post('/register',Register)
+app.post('/login',Verify,Login)
 
 const port = 4000;
 
