@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/food_ordering', {
+mongoose.connect('mongodb+srv://sverma70568:Devil@507@cluster0.bscxe03.mongodb.net/', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
