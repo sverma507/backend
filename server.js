@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+
 const app = express();
 // const user = require('./models/userSchema')
 require("./config/dbConnection");
@@ -7,7 +8,7 @@ const cors= require('cors');
 const {addCategory, getCategory,deleteCategory,countCategory} = require('./controllers/categoryController');
 const {addItem, getItem,deleteItem,updateItem,getItemByCategory}=require('./controllers/itemController');
 const {addOrder,getOrder}=require('./controllers/orderController')
-const {Register,Verify,Login}=require('./controllers/userController')
+const {Register,Verify,Login,Sendmail}=require('./controllers/userController')
 app.use(cors());
 app.use(express.json());
 app.get('/',(req,res)=>{
@@ -33,7 +34,9 @@ app.get('/getorder',getOrder)
 
 
 app.post('/register',Register)
-app.post('/login',Verify,Login)
+app.post('/login',Login)
+
+app.post('/sendmail',Sendmail)
 
 const port = 4000;
 

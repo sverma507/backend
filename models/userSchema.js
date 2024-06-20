@@ -14,9 +14,9 @@ const mySchema = new mongoose.Schema({
     password: {
         type: String
     },
-    confirm_Password: {
-        type: String
-    },
+    admin:{
+        type:Boolean
+    }
     // mana_power: Number, 
     // health: Number, 
     // gold: Number 
