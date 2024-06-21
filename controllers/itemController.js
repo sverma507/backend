@@ -1,6 +1,21 @@
 
 // const { findByIdAndUpdate } = require('../models/categorySchema');
 const fooditems=require('../models/food_itemSchema')
+var cloudinary = require('cloudinary').v2;
+
+cloudinary.config({ 
+    cloud_name: 'dzhhthvtm', 
+    api_key: '558114168948977', 
+    api_secret: 'yfDDN-TjP8gVE'
+  });
+
+  const photoUpload=async(req,res)=>{
+    const file =req.files.photo;
+    cloudinary.uploader.upload(file.tempFilePath,(err,result)=>{
+        console.log(result);
+    })
+  }
+
 const addItem = async (req, res) => {
      console.log("req.body=>", req.body);
      const result = await fooditems.create(req.body);
@@ -62,4 +77,4 @@ const getItemByCategory = async (req, res) => {
     }
 }
 
-module.exports = {addItem, getItem,deleteItem,updateItem,getItemByCategory}
+module.exports = {addItem, getItem,deleteItem,updateItem,getItemByCategory,photoUpload}

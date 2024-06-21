@@ -1,19 +1,25 @@
 const express = require('express');
 const mongoose = require('mongoose');
-
+const fileupload=require('express-fileupload')
 const app = express();
 // const user = require('./models/userSchema')
 require("./config/dbConnection");
 const cors= require('cors');
 const {addCategory, getCategory,deleteCategory,countCategory} = require('./controllers/categoryController');
-const {addItem, getItem,deleteItem,updateItem,getItemByCategory}=require('./controllers/itemController');
+const {addItem, getItem,deleteItem,updateItem,getItemByCategory,photoUpload}=require('./controllers/itemController');
 const {addOrder,getOrder}=require('./controllers/orderController')
 const {Register,Verify,Login,Sendmail}=require('./controllers/userController')
 app.use(cors());
+app.use(fileupload({
+    useTempFiles:true
+}))
 app.use(express.json());
 app.get('/',(req,res)=>{
     res.send('server is ready');
 });
+
+
+app.post('/uploadphoto',photoUpload)
 
 app.post('/addcategory', addCategory)
 app.get('/getcategory', getCategory);
