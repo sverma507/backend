@@ -26,7 +26,10 @@ const food_itemSchema = new mongoose.Schema({
    },
    added:{
       type:Boolean
-   }
+   },
+   photo:{
+      type:String
+   },
 }) 
 
 module.exports = mongoose.model('fooditems', food_itemSchema)

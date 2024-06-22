@@ -6,19 +6,49 @@ var cloudinary = require('cloudinary').v2;
 cloudinary.config({ 
     cloud_name: 'dzhhthvtm', 
     api_key: '558114168948977', 
-    api_secret: 'yfDDN-TjP8gVE'
+    api_secret: 'yfDDN-TjP8gVExMrFWB3peNGgSc'
   });
 
-  const photoUpload=async(req,res)=>{
-    const file =req.files.photo;
-    cloudinary.uploader.upload(file.tempFilePath,(err,result)=>{
-        console.log(result);
-    })
-  }
+//   const photoUpload=async(req,res)=>{
+   
+//   }
+
+// const photoUpload = async (req, res) => {
+//     // Check if files are present in the request
+//     if (!req.files || !req.files.photo) {
+//         return res.status(400).send("No files were uploaded.");
+//     }
+
+//     const file = req.files.photo;
+
+//     // Debugging: Log the file information
+//     console.log("file=>", file);
+
+//     // Use the correct file path property, depending on your setup it might be `tempFilePath` or `path`
+//     const filePath = file.tempFilePath || file.path;
+
+//     cloudinary.uploader.upload(filePath, (err, result) => {
+//         if (err) {
+//             console.error("Error uploading to Cloudinary:", err);
+//             return res.status(500).send("Error uploading to Cloudinary.");
+//         }
+
+//         console.log("photo result=>", result);
+//         res.send(result); // Send the Cloudinary result back to the client
+//     });
+// }
+
 
 const addItem = async (req, res) => {
      console.log("req.body=>", req.body);
-     const result = await fooditems.create(req.body);
+     const photo=null;
+     const file =req.files.photo;
+     await cloudinary.uploader.upload(file.tempFilePath,(err,result)=>{
+        photo=result;
+     })
+
+     const data={...req.body,["photo"]:photo};
+     const result = await fooditems.create(data);
      if(result){
         res.send(result);
     }else{
@@ -77,4 +107,4 @@ const getItemByCategory = async (req, res) => {
     }
 }
 
-module.exports = {addItem, getItem,deleteItem,updateItem,getItemByCategory,photoUpload}
+module.exports = {addItem, getItem,deleteItem,updateItem,getItemByCategory}

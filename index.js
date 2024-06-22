@@ -6,7 +6,7 @@ const app = express();
 require("./config/dbConnection");
 const cors= require('cors');
 const {addCategory, getCategory,deleteCategory,countCategory} = require('./controllers/categoryController');
-const {addItem, getItem,deleteItem,updateItem,getItemByCategory,photoUpload}=require('./controllers/itemController');
+const {addItem, getItem,deleteItem,updateItem,getItemByCategory}=require('./controllers/itemController');
 const {addOrder,getOrder}=require('./controllers/orderController')
 const {Register,Verify,Login,Sendmail}=require('./controllers/userController')
 app.use(cors());
@@ -19,7 +19,7 @@ app.get('/',(req,res)=>{
 });
 
 
-app.post('/uploadphoto',photoUpload)
+// app.post('/uploadphoto',photoUpload)
 
 app.post('/addcategory', addCategory)
 app.get('/getcategory', getCategory);
