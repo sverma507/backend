@@ -100,7 +100,7 @@ const getItemByCategory = async (req, res) => {
         // if (result.length > 0) {
         //     res.send({ result });
         // } 
-        res.send({ result });
+        res.send( result );
     } catch (err) {
         console.log("error while fetching the data from the backend on the basis of category name", err);
         res.status(500).send("Error");
