@@ -10,7 +10,7 @@ const {addItem, getItem,deleteItem,updateItem,getItemByCategory}=require('./cont
 const {addOrder,getOrder}=require('./controllers/orderController')
 const {Register,Verify,Login,Sendmail}=require('./controllers/userController')
 const corsOptions = {
-    origin: 'http://localhost:3001',
+    origin: '*',
     optionsSuccessStatus: 200, // Some legacy browsers (IE11, various SmartTVs) choke on 204
   };
   
